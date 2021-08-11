@@ -1,3 +1,3 @@
-import Carousel from "./components/Carousel";
+import Carousel, { FileRow } from "./components/Carousel";
 
-export { Carousel };
+export { Carousel, FileRow };

@@ -1,29 +1,32 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import Carousel, { CarouselType } from "./Carousel";
+import { FileRow, FileRowType } from "./Carousel";
 import { useArgs } from "@storybook/client-api";
 
 export default {
-    component: Carousel,
-    title: "Carousel",
+    component: FileRow,
+    title: "FileRow",
     args: {
-        open: true,
-        index: 2,
-        allowsDelete: true,
+        height: 100,
+        width: 100,
+        selectedItem: 0,
+        color: "black",
         items: [
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/wiki_f68b29345d_210425.jpg",
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/wiki_7defa2817a_210425.jpg",
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/wiki_a12975cec8_210425.jpg",
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/14e11a5b7awiki_210427.mp4",
             "https://sustorage.s3.eu-west-1.amazonaws.com/supplier_invoices/7142c3f122supplier_invoice_210810.pdf"
-        ]
+        ],
+        align: "flex-start",
+        embedded: true
     }
 } as Meta;
 
-export const Widget: Story<CarouselType> = args => {
-    const [{ open }, updateArgs] = useArgs();
+export const Widget: Story<FileRowType> = args => {
+    const [{ selectedItem }, updateArgs] = useArgs();
 
-    const close = () => updateArgs({ open: false });
+    const onClick = (index: number) => updateArgs({ selectedItem: index });
 
-    return <Carousel {...args} onClose={close} onDelete={(index: number) => alert(`Delete ${index}`)} open={open} />;
+    return <FileRow {...args} onClick={(index: any) => onClick(index)} selectedItem={selectedItem} />;
 };

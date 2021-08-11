@@ -1,1 +1,1 @@
-export { default } from "./Carousel";
+export { default, FileRow } from "./Carousel";

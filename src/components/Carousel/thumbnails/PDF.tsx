@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 
-const Video = styled.div`
+const PDF = styled.div`
     border-radius: 4px;
     cursor: pointer;
     border: 1px solid;
 `;
 
-const Icon = styled(VideoLibraryIcon)`
+const Icon = styled(PictureAsPdfIcon)`
     font-size: ${(props: any) => props.height}px !important;
 `;
 
@@ -19,12 +19,12 @@ export type VideoThumbnailType = {
     height: number;
 };
 
-const VideoThumbnail = ({ className, alt, onClick, height }: VideoThumbnailType) => {
+const PDFThumbnail = ({ className, alt, onClick, height }: VideoThumbnailType) => {
     return (
-        <Video className={className} onClick={onClick} title={alt}>
+        <PDF className={className} onClick={onClick} title={alt}>
             <Icon height={height} color="inherit" />
-        </Video>
+        </PDF>
     );
 };
 
-export default VideoThumbnail;
+export default PDFThumbnail;
