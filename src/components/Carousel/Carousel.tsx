@@ -32,6 +32,16 @@ const FileList = styled.div<{ align: "center" | "flex-start" | "flex-end" }>`
     overflow-x: auto;
 `;
 
+const NoItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+`;
+
 const useStyles = makeStyles(theme => ({
     root: {
         margin: 0,
@@ -82,10 +92,10 @@ export type ThumbnailType = {
 };
 
 const Thumbnail = ({ className, item, onClick, height }: ThumbnailType) => {
-    const extension = item.split(".").pop();
+    const extension = item.split(".").pop() || "jpg";
     const alt = item.split("/").pop() || "file";
 
-    switch (extension) {
+    switch (extension.toLowerCase()) {
         case "mp4":
             return <VideoThumbnail alt={alt} onClick={onClick} className={className} height={height} />;
         case "pdf":
@@ -133,9 +143,9 @@ export type CurrentItemType = {
 
 const CurrentItem = ({ items, index, width, height }: CurrentItemType) => {
     const file = items[index];
-    const extension = file.split(".").pop();
+    const extension = file.split(".").pop() || "jpg";
 
-    switch (extension) {
+    switch (extension.toLowerCase()) {
         case "mp4":
             return <VideoPreview video={file} width={width} height={height} />;
         case "pdf":
@@ -170,7 +180,11 @@ function Carousel({ open, items, onClose, onDelete, allowsDelete = false, index 
     };
 
     useEffect(() => {
-        setSelectedItem(index);
+        if (items[index]) {
+            setSelectedItem(index);
+        } else {
+            setSelectedItem(0);
+        }
     }, [index]);
 
     const deleteItem = () => {
@@ -182,10 +196,6 @@ function Carousel({ open, items, onClose, onDelete, allowsDelete = false, index 
     const pageWidth = useWidth();
 
     const { width, height } = dimensions[pageWidth];
-
-    if (items.length === 0) {
-        return null;
-    }
 
     return (
         <Dialog
@@ -201,10 +211,16 @@ function Carousel({ open, items, onClose, onDelete, allowsDelete = false, index 
         >
             <DialogTitle id="customized-dialog-title" onClose={onClose} onDelete={deleteItem} allowsDelete={allowsDelete} />
             <DialogContent>
-                <CurrentItemContainer>
-                    <CurrentItem items={items} index={selectedItem} width={width} height={height} />
-                </CurrentItemContainer>
-                <FileRow selectedItem={selectedItem} align="center" items={items} width={100} height={100} onClick={handleChangeImage} color="white" embedded={false} />
+                {items && items.length > 0 ? (
+                    <>
+                        <CurrentItemContainer>
+                            <CurrentItem items={items} index={selectedItem} width={width} height={height} />
+                        </CurrentItemContainer>
+                        <FileRow selectedItem={selectedItem} align="center" items={items} width={100} height={100} onClick={handleChangeImage} color="white" embedded={false} />
+                    </>
+                ) : (
+                    <NoItems>no items</NoItems>
+                )}
             </DialogContent>
         </Dialog>
     );
