@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import ReactSelect from "react-select";
+import ReactSelectAsync from "react-select/async";
 import styled from "styled-components";
 import { useTheme } from "@material-ui/core/styles";
 import { getSelectTheme } from "../../utils/theme";
@@ -14,31 +14,19 @@ type OptionsType = {
     label: string;
 };
 
-export type SelectType = {
+export type AsyncSelectType = {
     className?: string;
     label?: string;
     placeholder?: string;
-    options: OptionsType[];
     clearable?: boolean;
-    value?: string | undefined;
     onChange: (value: any) => void;
+    fetchResults: (value: any) => void;
+    defaultValue?: OptionsType;
 };
 
-const getValue = (value: any, options: OptionsType[]) => {
-    if (value) {
-        const option = options.find((o: any) => o.value === value);
-
-        if (option) {
-            return { value, label: option.label };
-        }
-    }
-};
-
-function Select({ className, label, placeholder, options, clearable, value, onChange }: SelectType) {
+function AsyncSelect({ className, label, placeholder, clearable, onChange, fetchResults, defaultValue }: AsyncSelectType) {
     const theme = useTheme();
     const selectTheme = getSelectTheme(theme);
-
-    const currentValue = getValue(value, options);
 
     return (
         <Container className={className}>
@@ -47,12 +35,13 @@ function Select({ className, label, placeholder, options, clearable, value, onCh
                     {label}
                 </Typography>
             )}
-            <ReactSelect
+            <ReactSelectAsync
                 isClearable={clearable}
+                cacheOptions
                 placeholder={placeholder}
-                value={currentValue}
+                loadOptions={fetchResults}
+                defaultValue={defaultValue}
                 onChange={value => onChange(value ? value.value : null)}
-                options={options}
                 theme={(theme: any) => ({
                     ...theme,
                     borderRadius: 0,
@@ -65,4 +54,4 @@ function Select({ className, label, placeholder, options, clearable, value, onCh
     );
 }
 
-export default Select;
+export default AsyncSelect;
