@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import InputLabel from "@material-ui/core/InputLabel";
 import ReactSelect from "react-select";
 import styled from "styled-components";
 import { useTheme } from "@material-ui/core/styles";
@@ -15,16 +15,33 @@ type OptionsType = {
 };
 
 export type SelectType = {
+    /**
+     * The class name to apply to the component
+     */
     className?: string;
+    /**
+     * label
+     */
     label?: string;
-    placeholder?: string;
-    options: OptionsType[];
-    clearable?: boolean;
-    value?: string | undefined;
+    /**
+     * is select clearable
+     */
+    isClearable?: boolean;
+    /**
+     * On change function
+     */
     onChange: (value: any) => void;
+    /**
+     * The value
+     */
+    value: string | undefined;
+    /**
+     * array of options
+     */
+    options: OptionsType[];
 };
 
-const getValue = (value: any, options: OptionsType[]) => {
+const getValue = (value: any, options: any) => {
     if (value) {
         const option = options.find((o: any) => o.value === value);
 
@@ -34,7 +51,8 @@ const getValue = (value: any, options: OptionsType[]) => {
     }
 };
 
-function Select({ className, label, placeholder, options, clearable, value, onChange }: SelectType) {
+/** A select component */
+function Select({ className, onChange, options, value, label }: SelectType) {
     const theme = useTheme();
     const selectTheme = getSelectTheme(theme);
 
@@ -42,14 +60,9 @@ function Select({ className, label, placeholder, options, clearable, value, onCh
 
     return (
         <Container className={className}>
-            {label && (
-                <Typography variant="caption" display="block">
-                    {label}
-                </Typography>
-            )}
+            {label && <InputLabel shrink={true}>{label}</InputLabel>}
+
             <ReactSelect
-                isClearable={clearable}
-                placeholder={placeholder}
                 value={currentValue}
                 onChange={value => onChange(value ? value.value : null)}
                 options={options}

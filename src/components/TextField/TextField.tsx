@@ -1,21 +1,27 @@
 import React from "react";
-import MUITextField from "@material-ui/core/TextField";
+import MUITextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
 
-export type TextFieldType = {
+//we omit the variant here as Ts cannot handle the union correctly
+export interface TextFieldType extends Omit<StandardTextFieldProps, "variant"> {
+    /**
+     * The class name to apply to the component
+     */
     className?: string;
-    label?: string;
-    placeholder?: string;
-    value?: string | undefined;
+    /**
+     * onChange function
+     */
     onChange: (value: any) => void;
-    fullWidth?: boolean;
-    multiline?: boolean;
-    type?: "text" | "number";
-};
+    /**
+     * input of the variant
+     */
+    variant?: "standard" | "outlined" | "filled";
+}
 
-function TextField({ className, label, placeholder, value, onChange, fullWidth, multiline, type }: TextFieldType) {
+/** A textfield component  */
+function TextField({ className, onChange, value, ...other }: TextFieldType) {
     const change = (event: any) => onChange(event.target.value);
 
-    return <MUITextField className={className} label={label} placeholder={placeholder} value={value} onChange={change} fullWidth={fullWidth} multiline={multiline} type={type} />;
+    return <MUITextField className={className} onChange={change} value={value} {...other} />;
 }
 
 export default TextField;

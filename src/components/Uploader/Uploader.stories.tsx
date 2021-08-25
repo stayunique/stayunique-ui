@@ -5,7 +5,7 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: Uploader,
-    title: "Uploader",
+    title: "Components/Uploader",
     args: {
         values: [
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/wiki_f68b29345d_210425.jpg",
@@ -13,9 +13,7 @@ export default {
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/wiki_a12975cec8_210425.jpg",
             "https://sustorage.s3.eu-west-1.amazonaws.com/wiki/14e11a5b7awiki_210427.mp4",
             "https://sustorage.s3.eu-west-1.amazonaws.com/supplier_invoices/7142c3f122supplier_invoice_210810.pdf"
-        ],
-        destination: "test",
-        uploadType: "test"
+        ]
     }
 } as Meta;
 
@@ -45,8 +43,8 @@ async function createSignedURL(file: any): Promise<any> {
     }
 }
 
-export const Aws: Story<UploaderType> = args => {
-    const [{ values }, updateArgs] = useArgs();
+export const Default: Story<UploaderType> = args => {
+    const [_, updateArgs] = useArgs();
 
     const onChange = (val: string) => {
         updateArgs({ values: [...args.values, val] });

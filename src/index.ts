@@ -5,5 +5,6 @@ import Uploader from "./components/Uploader";
 import AsyncSelect from "./components/AsyncSelect";
 import Checkbox from "./components/Checkbox";
 import TextField from "./components/TextField";
+import Radio from "./components/Radio";
 
-export { Carousel, FileRow, Loader, Select, Uploader, AsyncSelect, Checkbox, TextField };
+export { Carousel, FileRow, Loader, Select, Uploader, AsyncSelect, Checkbox, TextField, Radio };

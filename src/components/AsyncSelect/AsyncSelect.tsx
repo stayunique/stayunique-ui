@@ -1,5 +1,5 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from "react";
+import InputLabel from "@material-ui/core/InputLabel";
 import ReactSelectAsync from "react-select/async";
 import styled from "styled-components";
 import { useTheme } from "@material-ui/core/styles";
@@ -15,33 +15,57 @@ type OptionsType = {
 };
 
 export type AsyncSelectType = {
+    /**
+     * The class name to apply to the component
+     */
     className?: string;
-    label?: string;
-    placeholder?: string;
-    clearable?: boolean;
+    /**
+     * On change function
+     */
     onChange: (value: any) => void;
+    /**
+     * A function to fetch the results
+     */
     fetchResults: (value: any) => void;
+    /**
+     * Default value of the select
+     */
     defaultValue?: OptionsType;
+    /**
+     * label
+     */
+    label?: string;
+    /**
+     * is select clearable
+     */
+    isClearable?: boolean;
+    /**
+     * placeholder
+     */
+    placeholder?: string;
 };
 
-function AsyncSelect({ className, label, placeholder, clearable, onChange, fetchResults, defaultValue }: AsyncSelectType) {
+/** Async select to fetch remote results */
+function AsyncSelect({ className, label, placeholder, onChange, fetchResults, isClearable, defaultValue }: AsyncSelectType) {
     const theme = useTheme();
     const selectTheme = getSelectTheme(theme);
 
+    const [value, setValue] = useState<OptionsType | undefined>(defaultValue);
+
+    const change = (value: any) => {
+        setValue(value);
+        onChange(value.value ? value.value : null);
+    };
+
     return (
         <Container className={className}>
-            {label && (
-                <Typography variant="caption" display="block">
-                    {label}
-                </Typography>
-            )}
+            {label && <InputLabel shrink={true}>{label}</InputLabel>}
             <ReactSelectAsync
-                isClearable={clearable}
                 cacheOptions
                 placeholder={placeholder}
                 loadOptions={fetchResults}
-                defaultValue={defaultValue}
-                onChange={value => onChange(value ? value.value : null)}
+                onChange={change}
+                value={value}
                 theme={(theme: any) => ({
                     ...theme,
                     borderRadius: 0,
@@ -49,6 +73,7 @@ function AsyncSelect({ className, label, placeholder, clearable, onChange, fetch
                         ...selectTheme
                     }
                 })}
+                isClearable={isClearable}
             />
         </Container>
     );

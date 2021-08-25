@@ -11,10 +11,18 @@ const CircularProgressContainer = styled.div`
     height: 100vh;
 `;
 
-function Loader() {
+export type LoaderType = {
+    /**
+     * The color of the loader
+     */
+    color: "primary" | "secondary";
+};
+
+/** This is a loader component to be used to show when a load is happening e.g. api call */
+function Loader({ color }: LoaderType) {
     return (
         <CircularProgressContainer>
-            <CircularProgress />
+            <CircularProgress color={color} />
         </CircularProgressContainer>
     );
 }

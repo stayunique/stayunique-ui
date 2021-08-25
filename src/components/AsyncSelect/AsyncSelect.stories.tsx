@@ -5,12 +5,13 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: AsyncSelect,
-    title: "AsyncSelect",
+    title: "Inputs/AsyncSelect",
     args: {
         defaultValue: { value: 62201, label: "Josh Fradley - 20903" },
         label: "Label",
         placeholder: "Placeholder",
-        clearable: true
+        isClearable: true,
+        value: null
     }
 } as Meta;
 
@@ -38,10 +39,10 @@ async function fetchResults(inputValue: string): Promise<any> {
     }
 }
 
-export const Simple: Story<AsyncSelectType> = args => {
-    const [{ value }, updateArgs] = useArgs();
+export const Default: Story<AsyncSelectType> = args => {
+    const [_, updateArgs] = useArgs();
 
     const onChange = (val: string) => updateArgs({ value: val });
 
-    return <AsyncSelect {...args} onChange={onChange} value={value} fetchResults={fetchResults} />;
+    return <AsyncSelect {...args} onChange={onChange} fetchResults={fetchResults} />;
 };

@@ -5,17 +5,17 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: Checkbox,
-    title: "Checkbox",
+    title: "Inputs/Checkbox",
     args: {
         checked: true,
         label: "label"
     }
 } as Meta;
 
-export const Widget: Story<CheckboxType> = args => {
+export const Default: Story<CheckboxType> = args => {
     const [{ checked }, updateArgs] = useArgs();
 
-    const onChange = () => updateArgs({ checked: !checked });
+    const onChange = (checked: boolean) => updateArgs({ checked });
 
     return <Checkbox {...args} onChange={onChange} checked={checked} />;
 };

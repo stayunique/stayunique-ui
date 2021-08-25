@@ -5,7 +5,7 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: FileRow,
-    title: "FileRow",
+    title: "Components/FileRow",
     args: {
         height: 100,
         width: 100,
@@ -23,7 +23,7 @@ export default {
     }
 } as Meta;
 
-export const Widget: Story<FileRowType> = args => {
+export const Default: Story<FileRowType> = args => {
     const [{ selectedItem }, updateArgs] = useArgs();
 
     const onClick = (index: number) => updateArgs({ selectedItem: index });

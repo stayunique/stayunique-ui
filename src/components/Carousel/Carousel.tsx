@@ -114,16 +114,41 @@ const StyledThumbnail = styled(Thumbnail)`
 `;
 
 export type FileRowType = {
+    /**
+     * Array of images
+     */
     items: string[];
+    /**
+     * Currently selected index
+     */
     selectedItem: number;
+    /**
+     * On click function
+     */
     onClick: (index: number) => void;
+    /**
+     * Height of thumbnail
+     */
     height: number;
+    /**
+     * Width of thumbnail
+     */
     width: number;
+    /**
+     * Whether the component is embedded in the carousel
+     */
     embedded: boolean;
+    /**
+     * Color of thumbnails
+     */
     color: "white" | "black";
+    /**
+     * Aligment of thumnails in grid
+     */
     align: "center" | "flex-start" | "flex-end";
 };
 
+/** A component to render a row of files */
 export function FileRow({ items, selectedItem, onClick, height, width, color, align, embedded }: FileRowType) {
     return (
         <FileList align={align}>
@@ -156,11 +181,29 @@ const CurrentItem = ({ items, index, width, height }: CurrentItemType) => {
 };
 
 export type CarouselType = {
+    /**
+     * Whether the carousel / dialog is open
+     */
     open: boolean;
+    /**
+     * Array of images
+     */
     items: string[];
+    /**
+     * On close function
+     */
     onClose: () => void;
+    /**
+     * On delete function
+     */
     onDelete?: (index: number) => void;
+    /**
+     * Whether to show the delete button
+     */
     allowsDelete?: boolean;
+    /**
+     * Currently selected index
+     */
     index?: number;
 };
 
@@ -172,6 +215,7 @@ const dimensions = {
     xl: { width: 1200, height: 600 }
 };
 
+/** Carousel component for managing files */
 function Carousel({ open, items, onClose, onDelete, allowsDelete = false, index = 0 }: CarouselType) {
     const [selectedItem, setSelectedItem] = useState(0);
 

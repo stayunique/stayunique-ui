@@ -17,12 +17,25 @@ const DragDrop = styled(UppyDragDrop)`
 `;
 
 export type UploaderType = {
+    /**
+     * Array of current files
+     */
     values: string[];
+    /**
+     * On change function
+     */
     onChange: (url: string) => void;
+    /**
+     * On delete function
+     */
     onDelete: (index: number) => void;
+    /**
+     * A function that returns a presigned URL for uppy to upload to
+     */
     createSignedURL: (file: any) => Promise<{ url: string; method: string }>;
 };
 
+/** The upload component which uploads file to S3 and displays them using the FileRow component */
 function Uploader({ values, onChange, onDelete, createSignedURL }: UploaderType) {
     const [index, setIndex] = useState(0);
     const [carouselOpen, setCarouselOpen] = useState(false);

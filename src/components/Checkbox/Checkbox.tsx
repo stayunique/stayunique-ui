@@ -1,16 +1,21 @@
 import React from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControlLabel, { FormControlLabelProps } from "@material-ui/core/FormControlLabel";
 import MUICheckbox from "@material-ui/core/Checkbox";
 
-export type CheckboxType = {
-    className?: string;
-    label?: string;
-    checked: boolean;
-    onChange: () => void;
-};
+export interface CheckboxType extends Omit<FormControlLabelProps, "control" | "onChange"> {
+    /**
+     * On change function
+     */
+    onChange: (checked: boolean) => void;
+}
 
-function Checkbox({ className, label, checked, onChange }: CheckboxType) {
-    return <FormControlLabel className={className} control={<MUICheckbox checked={checked} onChange={onChange} />} label={label} />;
+/** A checkbox component */
+function Checkbox({ className, onChange, ...other }: CheckboxType) {
+    const change = (event: any) => {
+        onChange(event.target.checked);
+    };
+
+    return <FormControlLabel className={className} onChange={change} control={<MUICheckbox />} {...other} />;
 }
 
 export default Checkbox;

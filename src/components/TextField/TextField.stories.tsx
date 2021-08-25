@@ -5,7 +5,7 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: TextField,
-    title: "TextField",
+    title: "Inputs/TextField",
     args: {
         value: "text",
         label: "Label",
@@ -13,10 +13,10 @@ export default {
     }
 } as Meta;
 
-export const Simple: Story<TextFieldType> = args => {
-    const [{ value }, updateArgs] = useArgs();
+export const Default: Story<TextFieldType> = args => {
+    const [_, updateArgs] = useArgs();
 
     const onChange = (val: string) => updateArgs({ value: val });
 
-    return <TextField {...args} onChange={onChange} value={value} />;
+    return <TextField {...args} onChange={onChange} />;
 };

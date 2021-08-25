@@ -5,7 +5,7 @@ import { useArgs } from "@storybook/client-api";
 
 export default {
     component: Carousel,
-    title: "Carousel",
+    title: "Components/Carousel",
     args: {
         open: true,
         index: 2,
@@ -20,7 +20,7 @@ export default {
     }
 } as Meta;
 
-export const Widget: Story<CarouselType> = args => {
+export const Default: Story<CarouselType> = args => {
     const [{ open }, updateArgs] = useArgs();
 
     const close = () => updateArgs({ open: false });

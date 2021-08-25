@@ -1,28 +1,26 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import Select, { SelectType } from "./Select";
+import Radio, { RadioType } from "./Radio";
 import { useArgs } from "@storybook/client-api";
 
 export default {
-    component: Select,
-    title: "Inputs/Select",
+    component: Radio,
+    title: "Inputs/Radio",
     args: {
+        label: "label",
         options: [
             { value: "1", label: "Option 1" },
             { value: "2", label: "Option 2" },
             { value: "3", label: "Option 3" }
         ],
-        value: "3",
-        label: "Label",
-        placeholder: "Placeholder",
-        isClearable: true
+        value: "2"
     }
 } as Meta;
 
-export const Simple: Story<SelectType> = args => {
+export const Default: Story<RadioType> = args => {
     const [{ value }, updateArgs] = useArgs();
 
-    const onChange = (val: string) => updateArgs({ value: val });
+    const onChange = (newValue: string) => updateArgs({ value: newValue });
 
-    return <Select {...args} onChange={onChange} value={value} />;
+    return <Radio {...args} onChange={onChange} value={value} />;
 };
