@@ -52,7 +52,7 @@ const getValue = (value: any, options: any) => {
 };
 
 /** A select component */
-function Select({ className, onChange, options, value, label }: SelectType) {
+function Select({ className, onChange, options, value, label, isClearable }: SelectType) {
     const theme = useTheme();
     const selectTheme = getSelectTheme(theme);
 
@@ -73,6 +73,7 @@ function Select({ className, onChange, options, value, label }: SelectType) {
                         ...selectTheme
                     }
                 })}
+                isClearable={isClearable}
             />
         </Container>
     );
