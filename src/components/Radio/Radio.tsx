@@ -40,7 +40,7 @@ function Radio({ label, value, onChange, options, ...other }: RadioType) {
             <FormLabel component="legend">{label}</FormLabel>
             <RadioGroup value={value} onChange={change} {...other}>
                 {options.map((option: OptionType) => (
-                    <FormControlLabel key={option.value} value={option.value} control={<MUIRadio />} label={option.value} />
+                    <FormControlLabel key={option.value} value={option.value} control={<MUIRadio />} label={option.label} />
                 ))}
             </RadioGroup>
         </FormControl>

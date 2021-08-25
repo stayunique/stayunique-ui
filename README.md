@@ -20,3 +20,7 @@ In your local project make a .npmrc file in the root and add the following:
 @stayunique:registry=https://npm.pkg.github.com
 
 yarn add @stayunique/stayunique-ui
+
+### Vercel deployments
+
+Read this https://vercel.com/support/articles/using-private-dependencies-with-vercel

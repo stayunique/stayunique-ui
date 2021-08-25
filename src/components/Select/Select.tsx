@@ -24,6 +24,10 @@ export type SelectType = {
      */
     label?: string;
     /**
+     * placeholder
+     */
+    placeholder?: string;
+    /**
      * is select clearable
      */
     isClearable?: boolean;

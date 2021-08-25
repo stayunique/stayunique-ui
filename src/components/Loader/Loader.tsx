@@ -15,7 +15,7 @@ export type LoaderType = {
     /**
      * The color of the loader
      */
-    color: "primary" | "secondary";
+    color?: "primary" | "secondary";
 };
 
 /** This is a loader component to be used to show when a load is happening e.g. api call */
