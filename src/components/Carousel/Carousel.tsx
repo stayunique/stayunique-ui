@@ -97,6 +97,7 @@ const Thumbnail = ({ className, item, onClick, height }: ThumbnailType) => {
 
     switch (extension.toLowerCase()) {
         case "mp4":
+        case "mov":
             return <VideoThumbnail alt={alt} onClick={onClick} className={className} height={height} />;
         case "pdf":
             return <PDFThumbnail alt={alt} onClick={onClick} className={className} height={height} />;
@@ -172,6 +173,7 @@ const CurrentItem = ({ items, index, width, height }: CurrentItemType) => {
 
     switch (extension.toLowerCase()) {
         case "mp4":
+        case "mov":
             return <VideoPreview video={file} width={width} height={height} />;
         case "pdf":
             return <PDFPreview file={file} width={width} height={height} />;
