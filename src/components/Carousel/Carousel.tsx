@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import IconButton from "@material-ui/core/IconButton";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
 import styled from "styled-components";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from "@material-ui/icons/Close";
-import DeleteIcon from "@material-ui/icons/Delete";
+import MuiDialogTitle from "@mui/material/DialogTitle";
+import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@mui/styles/makeStyles";
 
 import VideoThumbnail from "./thumbnails/Video";
 import ImageThumbnail from "./thumbnails/Image";
@@ -18,6 +18,7 @@ import ImagePreview from "./previews/Image";
 import PDFPreview from "./previews/PDF";
 
 import { useWidth } from "./useWidth";
+import { Theme } from "@mui/material";
 
 const CurrentItemContainer = styled.div`
     display: flex;
@@ -42,7 +43,7 @@ const NoItems = styled.div`
     color: white;
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         margin: 0,
         padding: theme.spacing(2)
@@ -67,13 +68,13 @@ const DialogTitle = (props: any) => {
     const { children, onClose, onDelete, allowsDelete, ...other } = props;
 
     return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <MuiDialogTitle className={classes.root} {...other}>
             {allowsDelete && (
-                <IconButton aria-label="close" className={classes.deleteButton} onClick={onDelete}>
+                <IconButton aria-label="close" className={classes.deleteButton} onClick={onDelete} size="large">
                     <DeleteIcon />
                 </IconButton>
             )}
-            <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} size="large">
                 <CloseIcon />
             </IconButton>
         </MuiDialogTitle>

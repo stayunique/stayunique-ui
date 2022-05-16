@@ -1,1 +1,1 @@
-declare module 'uppy-plugin-image-compressor';
+declare module "uppy-plugin-image-compressor";

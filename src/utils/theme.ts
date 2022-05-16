@@ -1,7 +1,7 @@
-import { Theme } from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
 
 export const getSelectTheme = (theme: Theme) => {
-    const isDark = theme.palette.type === "dark";
+    const isDark = theme.palette.mode === "dark";
 
     return {
         danger: "red",

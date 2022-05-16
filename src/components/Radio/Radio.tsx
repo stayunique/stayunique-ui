@@ -1,9 +1,9 @@
 import React from "react";
-import MUIRadio from "@material-ui/core/Radio";
-import RadioGroup, { RadioGroupProps } from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import MUIRadio from "@mui/material/Radio";
+import RadioGroup, { RadioGroupProps } from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 type OptionType = {
     value: string;

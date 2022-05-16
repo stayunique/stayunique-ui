@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 const PDF = styled.div`
     border-radius: 4px;

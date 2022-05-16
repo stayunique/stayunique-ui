@@ -1,6 +1,6 @@
 import React from "react";
-import FormControlLabel, { FormControlLabelProps } from "@material-ui/core/FormControlLabel";
-import MUICheckbox from "@material-ui/core/Checkbox";
+import FormControlLabel, { FormControlLabelProps } from "@mui/material/FormControlLabel";
+import MUICheckbox from "@mui/material/Checkbox";
 
 export interface CheckboxType extends Omit<FormControlLabelProps, "control" | "onChange"> {
     /**

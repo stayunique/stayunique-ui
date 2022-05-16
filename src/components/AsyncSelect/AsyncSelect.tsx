@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import InputLabel from "@material-ui/core/InputLabel";
+import InputLabel from "@mui/material/InputLabel";
 import ReactSelectAsync from "react-select/async";
 import styled from "styled-components";
-import { useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@mui/material/styles";
 import { getSelectTheme } from "../../utils/theme";
 
 const Container = styled.div`

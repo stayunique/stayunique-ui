@@ -1,5 +1,5 @@
 import React from "react";
-import MUITextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
+import MUITextField, { StandardTextFieldProps } from "@mui/material/TextField";
 
 //we omit the variant here as Ts cannot handle the union correctly
 export interface TextFieldType extends Omit<StandardTextFieldProps, "variant"> {

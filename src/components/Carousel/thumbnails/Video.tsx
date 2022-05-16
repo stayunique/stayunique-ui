@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
 const Video = styled.div`
     border-radius: 4px;

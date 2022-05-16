@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Carousel, { FileRow } from "../Carousel/Carousel";
 import Uppy from "@uppy/core";
-import { DragDrop as UppyDragDrop, useUppy, StatusBar } from "@uppy/react";
+import { DragDrop as UppyDragDrop, StatusBar } from "@uppy/react";
 import AwsS3 from "@uppy/aws-s3";
 import styled from "styled-components";
 import ImageCompressor from "uppy-plugin-image-compressor";
@@ -13,7 +13,6 @@ import "@uppy/dashboard/dist/style.css";
 const DragDrop = styled(UppyDragDrop)`
     margin-top: 15px;
     margin-bottom: 15px;
-    height: 150px;
 `;
 
 export type UploaderType = {
@@ -30,7 +29,7 @@ export type UploaderType = {
      */
     onDelete: (index: number) => void;
     /**
-     * A function that returns a presigned URL for uppy to upload to
+     * A function that returns a pre signed URL for uppy to upload to
      */
     createSignedURL: (file: any) => Promise<{ url: string; method: string }>;
 };
@@ -60,7 +59,7 @@ function Uploader({ values, onChange, onDelete, createSignedURL }: UploaderType)
     };
 
     const uppy = useRef(
-        Uppy({ autoProceed: true })
+        new Uppy({ autoProceed: true })
             .use(ImageCompressor, {
                 maxWidth: 1000,
                 quality: 0.6
@@ -87,7 +86,7 @@ function Uploader({ values, onChange, onDelete, createSignedURL }: UploaderType)
     return (
         <>
             <FileRow items={values} selectedItem={index} width={150} height={150} onClick={openLightbox} color="black" align="flex-start" embedded={true} />
-            <DragDrop uppy={uppy.current} />
+            <DragDrop uppy={uppy.current} height={150} />
 
             <StatusBar uppy={uppy.current} hideUploadButton hideAfterFinish={true} showProgressDetails />
             <Carousel items={values} open={carouselOpen} allowsDelete={true} onDelete={(index: any) => deleteFile(index)} onClose={closeLightbox} index={index} />

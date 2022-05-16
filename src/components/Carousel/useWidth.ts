@@ -1,7 +1,6 @@
 import React from "react";
-import { Theme, ThemeProvider, useTheme, createTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { Breakpoint } from "@material-ui/core/styles/createBreakpoints";
+import { Theme, ThemeProvider, StyledEngineProvider, useTheme, createTheme, Breakpoint } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type BreakpointOrNull = Breakpoint | null;
 
