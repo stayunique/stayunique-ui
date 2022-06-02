@@ -7,8 +7,6 @@ import MuiDialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import makeStyles from "@mui/styles/makeStyles";
-
 import VideoThumbnail from "./thumbnails/Video";
 import ImageThumbnail from "./thumbnails/Image";
 import PDFThumbnail from "./thumbnails/PDF";
@@ -18,7 +16,6 @@ import ImagePreview from "./previews/Image";
 import PDFPreview from "./previews/PDF";
 
 import { useWidth } from "./useWidth";
-import { Theme } from "@mui/material";
 
 const CurrentItemContainer = styled.div`
     display: flex;
@@ -30,7 +27,7 @@ const FileList = styled.div<{ align: "center" | "flex-start" | "flex-end" }>`
     display: flex;
     gap: 10px;
     justify-content: ${(props: any) => props.align};
-    overflow-x: auto;
+    flex-wrap: wrap;
 `;
 
 const NoItems = styled.div`
@@ -43,38 +40,27 @@ const NoItems = styled.div`
     color: white;
 `;
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2)
-    },
-    deleteButton: {
-        position: "absolute",
-        right: theme.spacing(6),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500]
-    },
-    closeButton: {
-        position: "absolute",
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500]
-    }
-}));
-
 const DialogTitle = (props: any) => {
-    const classes = useStyles();
-
     const { children, onClose, onDelete, allowsDelete, ...other } = props;
 
     return (
-        <MuiDialogTitle className={classes.root} {...other}>
+        <MuiDialogTitle sx={{ margin: 0, padding: theme => theme.spacing(2) }} {...other}>
             {allowsDelete && (
-                <IconButton aria-label="close" className={classes.deleteButton} onClick={onDelete} size="large">
+                <IconButton
+                    aria-label="close"
+                    sx={{ position: "absolute", right: theme => theme.spacing(6), top: theme => theme.spacing(1), color: theme => theme.palette.grey[500] }}
+                    onClick={onDelete}
+                    size="large"
+                >
                     <DeleteIcon />
                 </IconButton>
             )}
-            <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} size="large">
+            <IconButton
+                aria-label="close"
+                sx={{ position: "absolute", right: theme => theme.spacing(1), top: theme => theme.spacing(1), color: theme => theme.palette.grey[500] }}
+                onClick={onClose}
+                size="large"
+            >
                 <CloseIcon />
             </IconButton>
         </MuiDialogTitle>
@@ -113,6 +99,7 @@ const StyledThumbnail = styled(Thumbnail)`
     height: ${(props: any) => props.height}px;
     opacity: ${(props: any) => (props.selected || props.embedded ? 1 : 0.4)};
     border-radius: 4px;
+    object-fit: cover;
 `;
 
 export type FileRowType = {
